@@ -19,7 +19,6 @@ fun App() {
             Image(
                 painter = painterResource("Shawshank_Redemption.jpg"),
                 contentDescription = "Shawshank Redemption poster",
-                modifier = Modifier.fillMaxSize()
             )
             Text("Nota: 9.2 - Ano: 1994")
         }
