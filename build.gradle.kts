@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("multiplatform") version "1.8.20"
-    id("org.jetbrains.compose") version "1.4.1"
+    kotlin("jvm")
+    id("org.jetbrains.compose")
 }
 
 group = "com.github.danieltex.sevendaysofcode"
@@ -14,24 +14,17 @@ repositories {
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
+dependencies {
+    implementation(compose.desktop.currentOs)
+}
+
 kotlin {
-    jvm {
-        jvmToolchain(17)
-        withJava()
-    }
-    sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-            }
-        }
-        val jvmTest by getting
-    }
+    jvmToolchain(17)
 }
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.github.danieltex.sevendaysofcode.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "imdb-app"
